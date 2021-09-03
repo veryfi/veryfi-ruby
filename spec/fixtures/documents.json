@@ -1,0 +1,116 @@
+[
+  {
+    "id": 38947300,
+    "abn_number": "",
+    "account_number": "",
+    "bill_to_address": "2 Court Square\\nNew York, NY 12210",
+    "bill_to_name": "John Smith",
+    "bill_to_vat_number": "",
+    "card_number": "7373",
+    "cashback": 7.66,
+    "category": "Meals & Entertainment",
+    "created": "2021-08-05 17:24:48",
+    "currency_code": "USD",
+    "date": "2021-08-05 10:24:48",
+    "delivery_date": "",
+    "discount": 7.66,
+    "document_reference_number": "",
+    "document_title": "INVOICE",
+    "document_type": "invoice",
+    "due_date": "2019-02-26",
+    "duplicate_of": 38995348,
+    "external_id": "",
+    "img_file_name": "8247b18a-41f0-443c-bbf4-10814385e097.pdf",
+    "img_thumbnail_url": "https://scdn.veryfi.com/receipts/470e7ab9-3084-4d05-b840-885383a2c22e/thumbnail.jpg?Expires=1628185188&Signature=cnyZCF~GnF2TkizYWObnGuNDhmkCsRl5-XoVymoalJFjJCrQKmq7RbpS6RCUnt60aVlPiT1uJeQJXG4eyZOg~FfJc5-ieC0gkqAFhh9vCRjzph15niTfq0mKg23nOu3YR8BJcWBfPfEL8k3FEqFERsvUBNddvfCkfx9JoMlq9ATNBQLxkK4lJPF4vMcFpkiCStOEt0MDJM80NbgPAqZEAQuDzygaiy8owaGiOVIj0h0ZMzLHNPzf5flGYqK6D2LvGRZlEIESavULk1Eug7tuG1DiqxTaDDxDbBGUCDb9ZIaKQAsPXzoEHUExB3J61q-B5KTFJSNch1okMe6sT9fzpQ__&Key-Pair-Id=APKAJCILBXEJFZF4DCHQ",
+    "img_url": "https://scdn.veryfi.com/receipts/470e7ab9-3084-4d05-b840-885383a2c22e/8247b18a-41f0-443c-bbf4-10814385e097.pdf?Expires=1628185188&Signature=OAaTOHH3KQYlj9pPA0fO50VjQSC8hnJJVvyJZwiGbK-wLw76UF5tWm0XtD5Htp2xx0vXbqJINIT7joyLA1dik01qDprgUbuXfcGamPUgJ6xcLOBKBF855bpFepK0Jdr-x9aGnx4EER7Z~CxUgvrv99cuFGuMab2s9gr0DwXHgLTCzVMZ2dOhbbvR8Yw8ADddzoOSPkwc~3PBB6AGla8cTQmSO0EWlq87rPaXWRrOnqnHwv5RqLWzVpODWVLeBYYudE2ZlaO~U7ftHzc0llKl3kffn4hElaDd5a7VoN0V9yKrGa1cCgRyYmFy9qtGsn3XPZutgnnzkB-~p6y0CUr7Zg__&Key-Pair-Id=APKAJCILBXEJFZF4DCHQ",
+    "insurance": "",
+    "invoice_number": "98",
+    "is_duplicate": 1,
+    "line_items": [
+      {
+        "id": 75788890,
+        "date": "",
+        "description": "98 Meat Pty Xchz",
+        "discount": 0,
+        "end_date": "",
+        "hsn": "",
+        "order": 1,
+        "price": 12.5,
+        "quantity": 1,
+        "reference": "",
+        "section": "",
+        "sku": "038902058959",
+        "start_date": "",
+        "tags": [
+          {
+            "id": 75788890,
+            "name": "tag"
+          }
+        ],
+        "tax": 7.66,
+        "tax_rate": 7.66,
+        "total": 88.2,
+        "type": "food",
+        "unit_of_measure": ""
+      }
+    ],
+    "notes": "",
+    "ocr_text": "2004-10-31\\n\\t8:21 PM\\nYOUR GUEST NUMBER IS\\n98\\nIN-N-OUT BURGER LAS VEGAS EASTERN\\n2004-10-31\\t\\t8:21 PM\\n165 1 5 98\\nCashier: SAM\\nGUEST #: 98\\nCounter-Eat in\\n\\t2.65\\nDbDb\\t\\t88.20\\n98 Meat Pty Xchz\\n\\t90.85\\nCounter-Eat In\\t\\t6.81\\nTAX 7.50%\\t\\t97.66\\nAmount Due\\n\\t$97.66\\nCASH TENDER\\t\\t$.00\\nChange\\n2004-10-31\\t\\t8:21 PM\\nTHANK YOU!",
+    "order_date": "",
+    "payment_display_name": "Cash",
+    "payment_terms": "15 days",
+    "payment_type": "cash",
+    "phone_number": "165 1 5 98",
+    "purchase_order_number": "2312/2019",
+    "rounding": 0,
+    "service_end_date": "",
+    "service_start_date": "",
+    "ship_date": "",
+    "ship_to_address": "3787 Pineview Drive\\nCambridge, MA 12210",
+    "ship_to_name": "John Smith",
+    "shipping": 0,
+    "store_number": "",
+    "subtotal": 97.66,
+    "tax": 12.5,
+    "tax_lines": [
+      {
+        "name": "SALES",
+        "order": 0,
+        "base": 1.11,
+        "rate": 1.11,
+        "total": 2.22
+      }
+    ],
+    "tip": 12.5,
+    "total": 97.66,
+    "total_weight": "",
+    "tracking_number": "",
+    "updated": "2021-08-05 17:24:48",
+    "vat_number": "",
+    "vendor": {
+      "address": "1912 Harvest Lane\\nNew York, NY 12210",
+      "category": "Fast Food",
+      "email": "",
+      "fax_number": "",
+      "name": "In-n-out Burger",
+      "phone_number": "165 1 5 98",
+      "raw_name": "In-N-Out Burger",
+      "vendor_logo": "https://cdn.veryfi.com/logos/us/949103001.png",
+      "vendor_reg_number": "",
+      "vendor_type": "Fast Food",
+      "web": ""
+    },
+    "vendor_account_number": "",
+    "vendor_bank_name": "",
+    "vendor_bank_number": "",
+    "vendor_bank_swift": "",
+    "vendor_iban": "",
+    "warnings": [
+      {
+        "status": "string",
+        "message": "string",
+        "error": "string"
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+set -e
+
+gem build veryfi.gemspec
+
+gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('$(ls *.gemspec)').version")
+
+gem push veryfi-$gem_version.gem
+
+git tag v$gem_version
+git push --tags

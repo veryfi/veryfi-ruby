@@ -1,0 +1,100 @@
+require: rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  NewCops: enable
+  Exclude:
+    - bin/**/*
+    - tmp/**/*
+    - .bundle/**/*
+    - vendor/**/*
+    - docs/**/*
+    - veryfi.gemspec
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/SymbolArray:
+  Description: 'Use %i or %I for arrays of symbols.'
+  Enabled: true
+
+Style/StringConcatenation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Description: 'Limit lines to 120 characters.'
+  Max: 120
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+  SupportedStylesAlignWith:
+    - keyword
+    - variable
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+  SupportedStyles:
+    - with_first_parameter
+    - with_fixed_indentation
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 7
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/SharedExamples:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
