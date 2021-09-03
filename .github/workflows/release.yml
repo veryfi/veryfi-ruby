@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+      - name: Release Gem
+        uses: discourse/publish-rubygems-action@v2-beta
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+          RELEASE_COMMAND: bin/release
+          GIT_EMAIL: support@veryfi.com
+          GIT_NAME: Github Action
