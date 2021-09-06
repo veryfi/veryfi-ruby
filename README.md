@@ -263,3 +263,11 @@ bin/setup
 ## Develop
 
 `bin/ci` checks your specs and runs quality tools
+
+## Release
+
+1. Change version in `lib/veryfi/version.rb`
+2. Run bundle - this should update `Gemfile.lock`
+3. Commit changes and push to Github
+4. On Github go to `Actions` -> `Release` -> and click `Run workflow` to trigger release
+5. Workflow will publish gem to [Rubygems](https://rubygems.org/gems/veryfi) and also create a new tag in repository
