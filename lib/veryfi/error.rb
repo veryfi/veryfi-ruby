@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Veryfi
-  class Error
+  class Error < StandardError
     def self.from_response(response)
       case response.status
       when 400 then BadRequest
@@ -11,35 +11,35 @@ module Veryfi
       else InternalError
       end
     end
+  end
 
-    class BadRequest < StandardError
-      def to_s
-        "Bad Request"
-      end
+  class BadRequest < Error
+    def to_s
+      "Bad Request"
     end
+  end
 
-    class UnauthorizedAccessToken < StandardError
-      def to_s
-        "Unauthorized Access Token"
-      end
+  class UnauthorizedAccessToken < Error
+    def to_s
+      "Unauthorized Access Token"
     end
+  end
 
-    class UnexpectedHTTPMethod < StandardError
-      def to_s
-        "Unexpected HTTP Method"
-      end
+  class UnexpectedHTTPMethod < Error
+    def to_s
+      "Unexpected HTTP Method"
     end
+  end
 
-    class AccessLimitReached < StandardError
-      def to_s
-        "Access Limit Reached"
-      end
+  class AccessLimitReached < Error
+    def to_s
+      "Access Limit Reached"
     end
+  end
 
-    class InternalError < StandardError
-      def to_s
-        "Internal Server Error"
-      end
+  class InternalError < Error
+    def to_s
+      "Internal Server Error"
     end
   end
 end
