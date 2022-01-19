@@ -5,19 +5,14 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby_version: [2.6, 2.7]
     env:
       CI: true
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby_version }}
-          # runs 'bundle install' and caches installed gems automatically
-          bundler-cache: true
-          cache-version: 20
+        run: |
+          - apt update
+          - apt install ruby-full
+          - ruby --version
       - name: Run CI scripts
         run: bin/ci
