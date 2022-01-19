@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set up Ruby
         run: |
-          sudo apt install ruby-full
+          sudo apt install ruby-full=1:2.7+1
           sudo gem install bundler:2.2
           bundle _2.2.0_ install
           sudo apt update
