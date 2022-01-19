@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          # runs 'bundle install' and caches installed gems automatically
-          bundler-cache: true
+        run: |
+          sudo apt install ruby-full
+          sudo gem install bundler:2.2
+          bundle _2.2.0_ install
+          sudo apt update
       - name: Release Gem
         uses: discourse/publish-rubygems-action@v2-beta
         env:
