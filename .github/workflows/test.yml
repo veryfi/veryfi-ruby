@@ -17,6 +17,6 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby_version }}
           # runs 'bundle install' and caches installed gems automatically
-          bundler-cache: true
+          bundler-cache: false
       - name: Run CI scripts
         run: bin/ci
