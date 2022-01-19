@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        run: sudo apt install ruby-full && gem install bundler:2.2.11 && bundle _2.2.11_ install
+        run: sudo apt install ruby-full && sudo gem install bundler:2.2.11 && bundle _2.2.11_ install
       - name: Run CI scripts
         run: bin/ci
