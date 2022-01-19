@@ -18,6 +18,6 @@ jobs:
           ruby-version: ${{ matrix.ruby_version }}
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
-          cache-version: 1
+          cache-version: 0
       - name: Run CI scripts
         run: bin/ci
