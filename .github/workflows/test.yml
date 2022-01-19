@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        run: apt install ruby-full
+        run: sudo apt install ruby-full
       - name: Run CI scripts
         run: bin/ci
