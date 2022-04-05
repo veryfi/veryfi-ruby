@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    veryfi (0.1.4)
+    veryfi (0.1.5)
       base64 (~> 0.1)
       faraday (~> 1.7)
       openssl (~> 2.2)
@@ -21,7 +21,7 @@ GEM
       rexml
     diff-lcs (1.4.4)
     docile (1.4.0)
-    faraday (1.9.3)
+    faraday (1.10.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -45,7 +45,7 @@ GEM
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
     hashdiff (1.0.1)
-    ipaddr (1.2.3)
+    ipaddr (1.2.4)
     method_source (1.0.0)
     multipart-post (2.1.1)
     openssl (2.2.1)
