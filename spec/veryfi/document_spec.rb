@@ -6,13 +6,13 @@ RSpec.describe "Document API" do
   include_context :with_veryfi_client
 
   let(:documents_fixture) { File.read("spec/fixtures/documents.json") }
-  let(:documents) { JSON.parse(documents_fixture) }
+  let(:documents) { JSON.parse(documents_fixture)["documents"] }
 
-  it { expect(client.api_url).to eq "https://api.veryfi.com/api/v7" }
+  it { expect(client.api_url).to eq "https://api.veryfi.com/api/v8" }
 
   describe "document.all" do
     before do
-      stub_request(:get, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:get, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents_fixture
       )
     end
@@ -20,13 +20,13 @@ RSpec.describe "Document API" do
     it "can fetch documents" do
       response = client.document.all
 
-      expect(response[0]["id"]).to eq(38_947_300)
+      expect(response["documents"][0]["id"]).to eq(44_691_518)
     end
   end
 
   describe "document.process(id, params)" do
     before do
-      stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:post, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents[0].to_json
       )
     end
@@ -78,13 +78,13 @@ RSpec.describe "Document API" do
 
       response = client.document.process(document_params)
 
-      expect(response["id"]).to eq(38_947_300)
+      expect(response["id"]).to eq(44_691_518)
     end
   end
 
   describe "document.process_url(id, params)" do
     before do
-      stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:post, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents[0].to_json
       )
     end
@@ -114,48 +114,48 @@ RSpec.describe "Document API" do
     it "can process document from url" do
       response = client.document.process_url(document_params)
 
-      expect(response["id"]).to eq(38_947_300)
+      expect(response["id"]).to eq(44_691_518)
     end
   end
 
   describe "document.get(id)" do
     before do
-      stub_request(:get, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:get, "https://api.veryfi.com/api/v8/partner/documents/44691518").to_return(
         body: documents[0].to_json
       )
     end
 
     it "can fetch document by id" do
-      response = client.document.get(38_947_300)
+      response = client.document.get(44_691_518)
 
-      expect(response["id"]).to eq(38_947_300)
+      expect(response["id"]).to eq(44_691_518)
     end
   end
 
   describe "document.update(id, params)" do
     before do
-      stub_request(:put, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:put, "https://api.veryfi.com/api/v8/partner/documents/44691518").to_return(
         body: documents[0].merge(discount: 0.9).to_json
       )
     end
 
     it "can update document" do
-      response = client.document.update(38_947_300, discount: 0.9)
+      response = client.document.update(44_691_518, discount: 0.9)
 
-      expect(response["id"]).to eq(38_947_300)
+      expect(response["id"]).to eq(44_691_518)
       expect(response["discount"]).to eq(0.9)
     end
   end
 
   describe "document.delete(id)" do
     before do
-      stub_request(:delete, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:delete, "https://api.veryfi.com/api/v8/partner/documents/44691518").to_return(
         body: { status: "ok", message: "Document has been deleted" }.to_json
       )
     end
 
     it "can fetch document by id" do
-      response = client.document.delete(38_947_300)
+      response = client.document.delete(44_691_518)
 
       expect(response["message"]).to eq("Document has been deleted")
     end

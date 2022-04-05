@@ -11,7 +11,6 @@ module Veryfi
 
       def all(document_id, params = {})
         response = request.get("/partner/documents/#{document_id}/line-items/", params)
-
         response["line_items"]
       end
 
