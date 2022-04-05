@@ -40,8 +40,10 @@ module Veryfi
 
         file_content = File.read(params[:file_path])
         file_data = Base64.encode64(file_content).gsub("\n", "")
+        file_name = params[:file_name] || File.basename(params[:file_path], ".*")
 
         payload = params.reject { |k| k == :file_path }.merge(
+          file_name: file_name,
           file_data: file_data
         )
 

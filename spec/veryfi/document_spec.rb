@@ -55,6 +55,7 @@ RSpec.describe "Document API" do
 
     let(:expected_document_params) do
       {
+        file_name: "receipt",
         file_data: expected_file_data,
         auto_delete: true,
         boost_mode: true,
