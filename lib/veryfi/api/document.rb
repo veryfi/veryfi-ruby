@@ -30,9 +30,7 @@ module Veryfi
       end
 
       def all(params = {})
-        response = request.get("/partner/documents/", params)
-
-        response.is_a?(Hash) ? [response] : response
+        request.get("/partner/documents/", params)
       end
 
       def process(raw_params)
