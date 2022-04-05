@@ -17,7 +17,7 @@ RSpec.describe Veryfi::Request do
     end
 
     it "adds necessary headers to the request" do
-      stub_request(:get, "https://api.veryfi.com/api/v7/partner/documents/")
+      stub_request(:get, "https://api.veryfi.com/api/v8/partner/documents/")
         .with(headers: expected_headers)
         .to_return(body: [{ id: 1 }].to_json)
 

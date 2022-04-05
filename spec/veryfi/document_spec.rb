@@ -8,11 +8,11 @@ RSpec.describe "Document API" do
   let(:documents_fixture) { File.read("spec/fixtures/documents.json") }
   let(:documents) { JSON.parse(documents_fixture) }
 
-  it { expect(client.api_url).to eq "https://api.veryfi.com/api/v7" }
+  it { expect(client.api_url).to eq "https://api.veryfi.com/api/v8" }
 
   describe "document.all" do
     before do
-      stub_request(:get, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:get, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents_fixture
       )
     end
@@ -26,7 +26,7 @@ RSpec.describe "Document API" do
 
   describe "document.process(id, params)" do
     before do
-      stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:post, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents[0].to_json
       )
     end
@@ -84,7 +84,7 @@ RSpec.describe "Document API" do
 
   describe "document.process_url(id, params)" do
     before do
-      stub_request(:post, "https://api.veryfi.com/api/v7/partner/documents/").to_return(
+      stub_request(:post, "https://api.veryfi.com/api/v8/partner/documents/").to_return(
         body: documents[0].to_json
       )
     end
@@ -120,7 +120,7 @@ RSpec.describe "Document API" do
 
   describe "document.get(id)" do
     before do
-      stub_request(:get, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:get, "https://api.veryfi.com/api/v8/partner/documents/38947300").to_return(
         body: documents[0].to_json
       )
     end
@@ -134,7 +134,7 @@ RSpec.describe "Document API" do
 
   describe "document.update(id, params)" do
     before do
-      stub_request(:put, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:put, "https://api.veryfi.com/api/v8/partner/documents/38947300").to_return(
         body: documents[0].merge(discount: 0.9).to_json
       )
     end
@@ -149,7 +149,7 @@ RSpec.describe "Document API" do
 
   describe "document.delete(id)" do
     before do
-      stub_request(:delete, "https://api.veryfi.com/api/v7/partner/documents/38947300").to_return(
+      stub_request(:delete, "https://api.veryfi.com/api/v8/partner/documents/38947300").to_return(
         body: { status: "ok", message: "Document has been deleted" }.to_json
       )
     end

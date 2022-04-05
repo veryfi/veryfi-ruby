@@ -9,7 +9,7 @@ RSpec.describe "Tag API" do
   let(:tags) { JSON.parse(tags_fixture)["tags"] }
 
   let(:document_id) { 38_947_300 }
-  let(:base_url) { "https://api.veryfi.com/api/v7/partner" }
+  let(:base_url) { "https://api.veryfi.com/api/v8/partner" }
 
   describe "tag.all" do
     before do

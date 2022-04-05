@@ -9,7 +9,7 @@ RSpec.describe "LineItem API" do
   let(:line_items) { JSON.parse(line_items_fixture)["line_items"] }
 
   let(:document_id) { 38_947_300 }
-  let(:base_url) { "https://api.veryfi.com/api/v7/partner/documents/#{document_id}" }
+  let(:base_url) { "https://api.veryfi.com/api/v8/partner/documents/#{document_id}" }
 
   describe "line_item.all(document_id)" do
     before do
