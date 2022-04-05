@@ -21,7 +21,7 @@ RSpec.describe "LineItem API" do
     it "can fetch line_items" do
       response = client.line_item.all(document_id)
 
-      expect(response[0]["id"]).to eq(75_788_890)
+      expect(response[0]["id"]).to eq(101_170_751)
     end
   end
 
@@ -63,48 +63,48 @@ RSpec.describe "LineItem API" do
     it "can create line item for a give document" do
       response = client.line_item.create(document_id, line_item_params)
 
-      expect(response["id"]).to eq(75_788_890)
+      expect(response["id"]).to eq(101_170_751)
     end
   end
 
   describe "line_item.get(document_id, id)" do
     before do
-      stub_request(:get, "#{base_url}/line-items/75788890").to_return(
+      stub_request(:get, "#{base_url}/line-items/101170751").to_return(
         body: line_items[0].to_json
       )
     end
 
     it "can fetch line item by id" do
-      response = client.line_item.get(document_id, 75_788_890)
+      response = client.line_item.get(document_id, 101_170_751)
 
-      expect(response["id"]).to eq(75_788_890)
+      expect(response["id"]).to eq(101_170_751)
     end
   end
 
   describe "line_item.update(document_id, id, params)" do
     before do
-      stub_request(:put, "#{base_url}/line-items/75788890").to_return(
+      stub_request(:put, "#{base_url}/line-items/101170751").to_return(
         body: line_items[0].merge(discount: 0.9).to_json
       )
     end
 
     it "can update line item" do
-      response = client.line_item.update(document_id, 75_788_890, discount: 0.9)
+      response = client.line_item.update(document_id, 101_170_751, discount: 0.9)
 
-      expect(response["id"]).to eq(75_788_890)
+      expect(response["id"]).to eq(101_170_751)
       expect(response["discount"]).to eq(0.9)
     end
   end
 
   describe "line_item.delete(document_id, id)" do
     before do
-      stub_request(:delete, "#{base_url}/line-items/75788890").to_return(
+      stub_request(:delete, "#{base_url}/line-items/101170751").to_return(
         body: { status: "ok", message: "Line item has been deleted" }.to_json
       )
     end
 
     it "can delete line item by id" do
-      response = client.line_item.delete(document_id, 75_788_890)
+      response = client.line_item.delete(document_id, 101_170_751)
 
       expect(response["message"]).to eq("Line item has been deleted")
     end
