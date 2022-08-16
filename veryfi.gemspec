@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
 
   spec.add_dependency "base64", "~> 0.1"
-  spec.add_dependency "openssl", "~> 2.2"
+  spec.add_dependency "openssl", ">= 2.2", "< 3.1"
 
   spec.add_dependency "faraday", "~> 1.7"
 
