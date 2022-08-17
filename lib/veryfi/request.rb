@@ -104,7 +104,6 @@ module Veryfi
     end
 
     def process_response(response)
-
       JSON.parse(response.body)
     end
   end

@@ -11,6 +11,5 @@ module Veryfi
         super(msg)
       end
     end
-
   end
 end
