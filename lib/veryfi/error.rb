@@ -3,6 +3,8 @@
 module Veryfi
   class Error
     def self.from_response(response)
+      raise VeryfiError, "Internal Server Error" if response.empty?
+
       raise VeryfiError, response["error"]
     end
 

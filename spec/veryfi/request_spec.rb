@@ -91,4 +91,17 @@ RSpec.describe Veryfi::Request do
       )
     end
   end
+
+  context "when server responds with empty body" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 501, body: "")
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::VeryfiError,
+        "Internal Server Error"
+      )
+    end
+  end
 end
