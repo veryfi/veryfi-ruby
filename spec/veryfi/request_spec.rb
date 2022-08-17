@@ -29,12 +29,12 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 400 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 400)
+      stub_request(:get, /\.*/).to_return(status: 400, body: '{"error": "Bad Request"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::BadRequest,
+        Veryfi::Error::VeryfiError,
         "Bad Request"
       )
     end
@@ -42,12 +42,12 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 401 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 401)
+      stub_request(:get, /\.*/).to_return(status: 401, body: '{"error": "Unauthorized Access Token"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::UnauthorizedAccessToken,
+        Veryfi::Error::VeryfiError,
         "Unauthorized Access Token"
       )
     end
@@ -55,12 +55,12 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 405 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 405)
+      stub_request(:get, /\.*/).to_return(status: 405, body: '{"error": "Unexpected HTTP Method"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::UnexpectedHTTPMethod,
+        Veryfi::Error::VeryfiError,
         "Unexpected HTTP Method"
       )
     end
@@ -68,12 +68,12 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 409 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 409)
+      stub_request(:get, /\.*/).to_return(status: 409, body: '{"error": "Access Limit Reached"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::AccessLimitReached,
+        Veryfi::Error::VeryfiError,
         "Access Limit Reached"
       )
     end
@@ -81,12 +81,12 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 500 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 500)
+      stub_request(:get, /\.*/).to_return(status: 500, body: '{"error": "Internal Server Error"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::InternalError,
+        Veryfi::Error::VeryfiError,
         "Internal Server Error"
       )
     end
