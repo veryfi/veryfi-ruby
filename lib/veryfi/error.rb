@@ -3,7 +3,7 @@
 module Veryfi
   class Error
     def self.from_response(response)
-      raise VeryfiError, response['error']
+      raise VeryfiError, response["error"]
     end
 
     class VeryfiError < StandardError
