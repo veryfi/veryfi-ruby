@@ -61,7 +61,7 @@ module Veryfi
       if response.success?
         json_response
       else
-        Veryfi::Error.from_response(json_response)
+        raise Veryfi::Error.from_response(response.status, json_response)
       end
     end
 

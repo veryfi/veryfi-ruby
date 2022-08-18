@@ -29,13 +29,13 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 400 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 400, body: '{"error": "Bad Request"}')
+      stub_request(:get, /\.*/).to_return(status: 400, body: '{"code": 400, "error": "Bad Request"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::VeryfiError,
-        "Bad Request"
+        Veryfi::Error::BadRequest,
+        "400, Bad Request"
       )
     end
   end
@@ -47,8 +47,21 @@ RSpec.describe Veryfi::Request do
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::VeryfiError,
-        "Unauthorized Access Token"
+        Veryfi::Error::UnauthorizedAccessToken,
+        "401, Unauthorized Access Token"
+      )
+    end
+  end
+
+  context "when server responds with 404 error" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 404, body: '{"error": "Resource Not Found"}')
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::ResourceNotFound,
+        "404, Resource not found"
       )
     end
   end
@@ -60,8 +73,8 @@ RSpec.describe Veryfi::Request do
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::VeryfiError,
-        "Unexpected HTTP Method"
+        Veryfi::Error::UnexpectedHTTPMethod,
+        "405, Unexpected HTTP Method"
       )
     end
   end
@@ -73,8 +86,8 @@ RSpec.describe Veryfi::Request do
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::VeryfiError,
-        "Access Limit Reached"
+        Veryfi::Error::AccessLimitReached,
+        "409, Access Limit Reached"
       )
     end
   end
@@ -86,8 +99,8 @@ RSpec.describe Veryfi::Request do
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
-        Veryfi::Error::VeryfiError,
-        "Internal Server Error"
+        Veryfi::Error::InternalError,
+        "500, Internal Server Error"
       )
     end
   end
@@ -100,7 +113,20 @@ RSpec.describe Veryfi::Request do
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::VeryfiError,
-        ""
+        "501"
+      )
+    end
+  end
+
+  context "when server responds with unknown error and body" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 504, body: '{"error": "Gateway Timeout"}')
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::VeryfiError,
+        "504, Gateway Timeout"
       )
     end
   end
