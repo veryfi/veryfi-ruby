@@ -2,44 +2,62 @@
 
 module Veryfi
   class Error
-    def self.from_response(response)
-      case response.status
-      when 400 then BadRequest
-      when 401 then UnauthorizedAccessToken
-      when 405 then UnexpectedHTTPMethod
-      when 409 then AccessLimitReached
-      else InternalError
+    def self.from_response(status, response)
+      if response.empty?
+        VeryfiError.new(format("%<code>d", code: status))
+      else
+        get_error(status, response)
       end
     end
 
+    def self.get_error(status, response)
+      case status
+      when 400 then BadRequest
+      when 401 then UnauthorizedAccessToken
+      when 404 then ResourceNotFound
+      when 405 then UnexpectedHTTPMethod
+      when 409 then AccessLimitReached
+      when 500 then InternalError
+      else VeryfiError.new(format("%<code>d, %<message>s", code: status, message: response["error"]))
+      end
+    end
     class BadRequest < StandardError
       def to_s
-        "Bad Request"
+        "400, Bad Request"
       end
     end
 
     class UnauthorizedAccessToken < StandardError
       def to_s
-        "Unauthorized Access Token"
+        "401, Unauthorized Access Token"
+      end
+    end
+
+    class ResourceNotFound < StandardError
+      def to_s
+        "404, Resource not found"
       end
     end
 
     class UnexpectedHTTPMethod < StandardError
       def to_s
-        "Unexpected HTTP Method"
+        "405, Unexpected HTTP Method"
       end
     end
 
     class AccessLimitReached < StandardError
       def to_s
-        "Access Limit Reached"
+        "409, Access Limit Reached"
       end
     end
 
     class InternalError < StandardError
       def to_s
-        "Internal Server Error"
+        "500, Internal Server Error"
       end
+    end
+
+    class VeryfiError < StandardError
     end
   end
 end

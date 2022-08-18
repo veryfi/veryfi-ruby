@@ -56,11 +56,12 @@ module Veryfi
       headers = generate_headers(params)
 
       response = conn.public_send(http_verb, url, body, headers)
+      json_response = process_response(response)
 
       if response.success?
-        process_response(http_verb, response)
+        json_response
       else
-        raise Veryfi::Error.from_response(response)
+        raise Veryfi::Error.from_response(response.status, json_response)
       end
     end
 
@@ -102,8 +103,8 @@ module Veryfi
       Veryfi::Signature.new(client_secret, params, timestamp).to_base64
     end
 
-    def process_response(_http_verb, response)
-      # return response if http_verb == :delete
+    def process_response(response)
+      return {} if response.body.empty?
 
       JSON.parse(response.body)
     end

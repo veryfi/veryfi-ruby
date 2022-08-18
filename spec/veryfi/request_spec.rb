@@ -29,65 +29,104 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 400 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 400)
+      stub_request(:get, /\.*/).to_return(status: 400, body: '{"code": 400, "error": "Bad Request"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::BadRequest,
-        "Bad Request"
+        "400, Bad Request"
       )
     end
   end
 
   context "when server responds with 401 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 401)
+      stub_request(:get, /\.*/).to_return(status: 401, body: '{"error": "Unauthorized Access Token"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::UnauthorizedAccessToken,
-        "Unauthorized Access Token"
+        "401, Unauthorized Access Token"
+      )
+    end
+  end
+
+  context "when server responds with 404 error" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 404, body: '{"error": "Resource Not Found"}')
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::ResourceNotFound,
+        "404, Resource not found"
       )
     end
   end
 
   context "when server responds with 405 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 405)
+      stub_request(:get, /\.*/).to_return(status: 405, body: '{"error": "Unexpected HTTP Method"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::UnexpectedHTTPMethod,
-        "Unexpected HTTP Method"
+        "405, Unexpected HTTP Method"
       )
     end
   end
 
   context "when server responds with 409 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 409)
+      stub_request(:get, /\.*/).to_return(status: 409, body: '{"error": "Access Limit Reached"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::AccessLimitReached,
-        "Access Limit Reached"
+        "409, Access Limit Reached"
       )
     end
   end
 
   context "when server responds with 500 error" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 500)
+      stub_request(:get, /\.*/).to_return(status: 500, body: '{"error": "Internal Server Error"}')
     end
 
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::InternalError,
-        "Internal Server Error"
+        "500, Internal Server Error"
+      )
+    end
+  end
+
+  context "when server responds with empty body" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 501, body: "")
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::VeryfiError,
+        "501"
+      )
+    end
+  end
+
+  context "when server responds with unknown error and body" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 504, body: '{"error": "Gateway Timeout"}')
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::VeryfiError,
+        "504, Gateway Timeout"
       )
     end
   end
