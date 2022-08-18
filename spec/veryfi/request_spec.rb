@@ -100,7 +100,7 @@ RSpec.describe Veryfi::Request do
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::VeryfiError,
-        "Internal Server Error"
+        ""
       )
     end
   end
