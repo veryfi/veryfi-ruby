@@ -4,12 +4,15 @@
 
 [![Version](https://img.shields.io/gem/v/veryfi)](https://rubygems.org/gems/veryfi)
 [![Test](https://github.com/veryfi/veryfi-ruby/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/veryfi/veryfi-ruby/actions/workflows/test.yml)
-
 [![Coverage](https://raw.githubusercontent.com/veryfi/veryfi-ruby/main/coverage/coverage-badge.png)](https://raw.githubusercontent.com/veryfi/veryfi-ruby/main/coverage/coverage-badge.png)
+
+**veryfi-ruby** is a Ruby gem for communicating with the [Veryfi OCR API](https://veryfi.com/api/)
+
+[Documentation](https://veryfi.github.io/veryfi-ruby/)
 
 ## Table of Contents
 
-- [Veryfi SDK for Ruby](#veryfi-sdk-for-ruby)
+- [Top](#veryfi-sdk-for-ruby)
   - [Table of Contents](#table-of-contents)
   - [Example](#example)
   - [Installation](#installation)
@@ -22,7 +25,6 @@
   - [Quality tools](#quality-tools)
   - [Develop](#develop)
 
-**veryfi-ruby** is a Ruby gem for communicating with the [Veryfi OCR API](https://veryfi.com/api/)
 
 ## Example
 
