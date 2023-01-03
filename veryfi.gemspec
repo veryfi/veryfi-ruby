@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "base64", "~> 0.1"
   spec.add_dependency "openssl", ">= 2.2", "< 3.1"
 
-  spec.add_dependency "faraday", "~> 1.7"
+  spec.add_dependency "faraday", "~> 2.0"
 
   spec.add_development_dependency "bundler", "~> 2.2"
   spec.add_development_dependency "bundler-audit", "~> 0.9"
