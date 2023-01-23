@@ -1,6 +1,7 @@
 # Veryfi SDK for Ruby
 
-![Veryfi Logo](https://cdn.veryfi.com/logos/veryfi-logo-wide-github.png)
+<img src="https://user-images.githubusercontent.com/30125790/212157461-58bdc714-2f89-44c2-8e4d-d42bee74854e.png#gh-dark-mode-only" width="200">
+<img src="https://user-images.githubusercontent.com/30125790/212157486-bfd08c5d-9337-4b78-be6f-230dc63838ba.png#gh-light-mode-only" width="200">
 
 [![Version](https://img.shields.io/gem/v/veryfi)](https://rubygems.org/gems/veryfi)
 [![Test](https://github.com/veryfi/veryfi-ruby/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/veryfi/veryfi-ruby/actions/workflows/test.yml)
