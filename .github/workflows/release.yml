@@ -10,8 +10,7 @@ jobs:
 
     steps:
       - name: Configure safe directory
-        run: git config --system --add safe.directory /github/workspace
-
+        run: sudo git config --global --add safe.directory /github/workspace
       - uses: actions/checkout@v2
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
