@@ -21,37 +21,37 @@ module Veryfi
       else VeryfiError.new(format("%<code>d, %<message>s", code: status, message: response["error"]))
       end
     end
-    class BadRequest < StandardError
+    class BadRequest < VeryfiError
       def to_s
         "400, Bad Request"
       end
     end
 
-    class UnauthorizedAccessToken < StandardError
+    class UnauthorizedAccessToken < VeryfiError
       def to_s
         "401, Unauthorized Access Token"
       end
     end
 
-    class ResourceNotFound < StandardError
+    class ResourceNotFound < VeryfiError
       def to_s
         "404, Resource not found"
       end
     end
 
-    class UnexpectedHTTPMethod < StandardError
+    class UnexpectedHTTPMethod < VeryfiError
       def to_s
         "405, Unexpected HTTP Method"
       end
     end
 
-    class AccessLimitReached < StandardError
+    class AccessLimitReached < VeryfiError
       def to_s
         "409, Access Limit Reached"
       end
     end
 
-    class InternalError < StandardError
+    class InternalError < VeryfiError
       def to_s
         "500, Internal Server Error"
       end
