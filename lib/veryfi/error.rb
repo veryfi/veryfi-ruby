@@ -11,8 +11,11 @@ module Veryfi
     end
 
     def self.get_error(status, response)
-      details = []
-      details = response["details"] if response.key?("details")
+      details = response.key?("details") ? response["details"] : []
+      create_error(status, details, response["error"])
+    end
+
+    def self.create_error(status, details, error_message)
       case status
       when 400 then BadRequest.new(details)
       when 401 then UnauthorizedAccessToken.new(details)
@@ -20,7 +23,7 @@ module Veryfi
       when 405 then UnexpectedHTTPMethod.new(details)
       when 409 then AccessLimitReached.new(details)
       when 500 then InternalError.new(details)
-      else VeryfiError.new(format("%<code>d, %<message>s", code: status, message: response["error"]), details)
+      else VeryfiError.new(format("%<code>d, %<message>s", code: status, message: error_message), details)
       end
     end
 
@@ -32,7 +35,7 @@ module Veryfi
         @details = if details.empty?
           ""
         else
-          "\n#{details.map { |val| val['msg']}.join("\n")}"
+          "\n#{details.map { |val| val['msg'] }.join("\n")}"
         end
         super(message)
       end

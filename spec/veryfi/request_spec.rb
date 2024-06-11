@@ -42,7 +42,22 @@ RSpec.describe Veryfi::Request do
 
   context "when server responds with 400 error and details" do
     before do
-      stub_request(:get, /\.*/).to_return(status: 400, body: '{"code": 400, "error": "Bad Request", "details": [{"type": "value_error", "loc": [], "msg": "Value error, Only one of ..."}]}')
+      stub_request(:get, /\.*/).to_return(
+        status: 400,
+        body: <<-JSON
+          {
+            "code": 400,
+            "error": "Bad Request",
+            "details": [
+              {
+                "type": "value_error",
+                "loc": [],
+                "msg": "Value error, Only one of ..."
+              }
+            ]
+          }
+        JSON
+      )
     end
 
     it "raises error" do
