@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "json"
+
 module Veryfi
   class Error
     def self.from_response(status, response)
@@ -35,7 +37,7 @@ module Veryfi
         @details = if details.empty?
           ""
         else
-          "\n#{details.map { |val| val['msg'] }.join("\n")}"
+          "\n#{JSON.pretty_generate(details)}"
         end
         super(message)
       end

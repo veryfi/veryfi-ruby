@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "active_support/core_ext/string/strip"
 
 RSpec.describe Veryfi::Request do
   include_context :with_veryfi_client
@@ -60,11 +61,26 @@ RSpec.describe Veryfi::Request do
       )
     end
 
+    let(:expected_error) do
+      <<-TEXT.strip_heredoc.chomp
+        400, Bad Request
+        [
+          {
+            "type": "value_error",
+            "loc": [
+
+            ],
+            "msg": "Value error, Only one of ..."
+          }
+        ]
+      TEXT
+    end
+
     it "raises error" do
       expect { client.document.all }.to raise_error(
         Veryfi::Error::BadRequest
       ) { |error|
-        expect(error.to_s).to eq("400, Bad Request\nValue error, Only one of ...")
+        expect(error.to_s).to eq(expected_error)
       }
     end
   end
