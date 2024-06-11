@@ -82,4 +82,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov-badge", "~> 2.0"
   spec.add_development_dependency "vcr", "~> 6.0"
   spec.add_development_dependency "webmock", "~> 3.14"
+  spec.add_development_dependency "rexml", "~> 3.2.7"
+  spec.add_development_dependency "activesupport", "~> 6.0"
 end
