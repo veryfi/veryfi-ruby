@@ -40,6 +40,20 @@ RSpec.describe Veryfi::Request do
     end
   end
 
+  context "when server responds with 400 error and details" do
+    before do
+      stub_request(:get, /\.*/).to_return(status: 400, body: '{"code": 400, "error": "Bad Request", "details": [{"type": "value_error", "loc": [], "msg": "Value error, Only one of ..."}]}')
+    end
+
+    it "raises error" do
+      expect { client.document.all }.to raise_error(
+        Veryfi::Error::BadRequest
+      ) { |error|
+        expect(error.to_s).to eq("400, Bad Request\nValue error, Only one of ...")
+      }
+    end
+  end
+
   context "when server responds with 401 error" do
     before do
       stub_request(:get, /\.*/).to_return(status: 401, body: '{"error": "Unauthorized Access Token"}')
