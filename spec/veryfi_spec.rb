@@ -26,7 +26,7 @@ RSpec.describe Veryfi do
     it "exposes sensible defaults" do
       expect(described_class.configuration.base_url).to eq("https://api.veryfi.com/api/")
       expect(described_class.configuration.api_version).to eq("v8")
-      expect(described_class.configuration.timeout).to eq(20)
+      expect(described_class.configuration.timeout).to eq(30)
     end
   end
 

@@ -64,8 +64,7 @@ module Veryfi
       url = [api_url, path].join
       body = generate_body(http_verb, params)
       headers = generate_headers(params)
-
-      response = conn.public_send(http_verb, url, body, headers)
+      response = attempt_request(http_verb, url, body, headers)
       json_response = process_response(response)
 
       if response.success?
@@ -73,6 +72,15 @@ module Veryfi
       else
         raise Veryfi::Error.from_response(response.status, json_response)
       end
+    end
+
+    def attempt_request(http_verb, url, body, headers)
+      conn.public_send(http_verb, url, body, headers)
+    rescue Faraday::TimeoutError => e
+      raise unless e.message.include?("closed")
+
+      @_conn = nil
+      conn.public_send(http_verb, url, body, headers)
     end
 
     def conn

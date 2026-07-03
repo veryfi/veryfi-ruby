@@ -50,7 +50,7 @@ module Veryfi
       api_key:,
       base_url: "https://api.veryfi.com/api/",
       api_version: "v8",
-      timeout: 20,
+      timeout: 30,
       faraday: nil
     )
       @request = Veryfi::Request.new(

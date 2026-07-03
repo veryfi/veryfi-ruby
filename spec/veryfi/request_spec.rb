@@ -94,6 +94,29 @@ RSpec.describe Veryfi::Request do
     end
   end
 
+  describe "stale connection recovery" do
+    let(:request) do
+      described_class.new("cid", nil, "u", "k", "https://api.veryfi.com/api/", "v8", 30)
+    end
+
+    let(:endpoint) { "https://api.veryfi.com/api/v8/partner/documents/" }
+
+    it "retries once after a closed-socket ReadTimeout" do
+      stub_request(:get, endpoint)
+        .to_raise(Faraday::TimeoutError.new("Net::ReadTimeout with #<TCPSocket:(closed)>")).then
+        .to_return(status: 200, body: '[{"id":1}]')
+
+      expect { request.get("/partner/documents/") }.not_to raise_error
+    end
+
+    it "re-raises Faraday::TimeoutError when the socket is not closed" do
+      stub_request(:get, endpoint)
+        .to_raise(Faraday::TimeoutError.new("execution expired"))
+
+      expect { request.get("/partner/documents/") }.to raise_error(Faraday::TimeoutError, /execution expired/)
+    end
+  end
+
   context "when server responds with empty body" do
     before do
       stub_request(:get, /\.*/).to_return(status: 501, body: "")

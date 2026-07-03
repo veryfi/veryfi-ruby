@@ -15,7 +15,7 @@ module Veryfi
     def initialize
       @base_url    = "https://api.veryfi.com/api/"
       @api_version = "v8"
-      @timeout     = 20
+      @timeout     = 30
     end
 
     # @return [Hash] the configuration as a keyword-arg-ready Hash. Keys
