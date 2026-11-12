@@ -509,6 +509,7 @@ explicit in your own code.
 | `max_pages_to_process`  | No                                         | `nil` (= all pages)                           | Hard cap on the number of pages Veryfi reads, starting from page 1. Useful for very long PDFs when you only care about the first few pages. |
 | `bounding_boxes`        | No                                         | `false`                                       | When `true`, the response includes `bounding_box` / `bounding_region` metadata for each extracted field. |
 | `confidence_details`    | No                                         | `false`                                       | When `true`, the response includes per-field `score` and `ocr_score` values. |
+| `thinking`              | No                                         | `nil` (off)                                   | Extra LLM pass on the line items: `"light"` or `"deep"` (slower). Used by `process` / `process_url`, and only takes effect if thinking mode is enabled for your account. |
 
 So all four of the following calls are equivalent and produce the same
 request payload — pick whichever style your team prefers:
