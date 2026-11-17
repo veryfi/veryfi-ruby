@@ -91,6 +91,9 @@ module Veryfi
       #   Return bounding-box info for extracted fields.
       # @option raw_params [Hash]          :confidence_details (`false`)
       #   Return confidence score details.
+      # @option raw_params [String]        :thinking           (`nil`)
+      #   Extra LLM pass on the line items: `"light"` or `"deep"` (slower).
+      #   Omit to turn it off. Needs thinking mode enabled for your account.
       #
       # @return [Veryfi::Resource] Extracted document data.
       def process(raw_params)
@@ -126,6 +129,7 @@ module Veryfi
       # @option raw_params [Boolean]        :async       (`false`)
       # @option raw_params [String]         :external_id (`nil`)
       # @option raw_params [Integer]        :max_pages_to_process (`nil` = all pages)
+      # @option raw_params [String]         :thinking    (`nil`) `"light"` or `"deep"`, see {#process}
       #
       # @return [Veryfi::Resource]
       def process_url(raw_params)

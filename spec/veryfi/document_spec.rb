@@ -86,6 +86,26 @@ RSpec.describe "Document API" do
 
       expect(response["id"]).to eq(44_691_518)
     end
+
+    %w[light deep].each do |mode|
+      it "sends thinking=#{mode}" do
+        client.document.process(document_params.merge(thinking: mode))
+
+        expect(
+          a_request(:post, "https://api.veryfi.com/api/v8/partner/documents/")
+            .with { |req| JSON.parse(req.body)["thinking"] == mode }
+        ).to have_been_made.once
+      end
+    end
+
+    it "does not send thinking when omitted" do
+      client.document.process(document_params)
+
+      expect(
+        a_request(:post, "https://api.veryfi.com/api/v8/partner/documents/")
+          .with { |req| !JSON.parse(req.body).key?("thinking") }
+      ).to have_been_made.once
+    end
   end
 
   describe "document.process_url(id, params)" do
@@ -121,6 +141,26 @@ RSpec.describe "Document API" do
       response = client.document.process_url(document_params)
 
       expect(response["id"]).to eq(44_691_518)
+    end
+
+    %w[light deep].each do |mode|
+      it "sends thinking=#{mode}" do
+        client.document.process_url(document_params.merge(thinking: mode))
+
+        expect(
+          a_request(:post, "https://api.veryfi.com/api/v8/partner/documents/")
+            .with { |req| JSON.parse(req.body)["thinking"] == mode }
+        ).to have_been_made.once
+      end
+    end
+
+    it "does not send thinking when omitted" do
+      client.document.process_url(document_params)
+
+      expect(
+        a_request(:post, "https://api.veryfi.com/api/v8/partner/documents/")
+          .with { |req| !JSON.parse(req.body).key?("thinking") }
+      ).to have_been_made.once
     end
   end
 
